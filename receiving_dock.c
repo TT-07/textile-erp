@@ -119,6 +119,17 @@ void sortByPriority(Queue* queue) {
 //Priority: P/p
 //Supplier: S/s
 //Material: M/m
+// Cleanup helper function
+void freeGroups(Group* groups, int groupCount) {
+    if (groups != NULL) {
+        for (int i = 0; i < groupCount; i++) {
+            free(groups[i].positions);
+        }
+        free(groups);
+    }
+}
+
+// Main function without goto
 void groupBy(const Queue* queue, char type) {
     if (isEmpty(queue)) {
         printf("Queue is empty.\n");
@@ -146,12 +157,12 @@ void groupBy(const Queue* queue, char type) {
                 break;
             default:
                 printf("Invalid grouping type.\n");
-                goto cleanup;
+                freeGroups(groups, groupCount);
+                return;
         }
 
         int found = -1;
-
-        if (groups != NULL){
+        if (groups != NULL) {
             for (int i = 0; i < groupCount; i++) {
                 if (strcmp(groups[i].key, currentKey) == 0) {
                     found = i;
@@ -164,7 +175,8 @@ void groupBy(const Queue* queue, char type) {
             Group *newGroups = realloc(groups, (groupCount + 1) * sizeof(Group));
             if (newGroups == NULL) {
                 printf("Group Allocation Failed.\n");
-                goto cleanup;
+                freeGroups(groups, groupCount);
+                return;
             }
             groups = newGroups;
 
@@ -177,36 +189,28 @@ void groupBy(const Queue* queue, char type) {
         }
 
         Group *g = &groups[found];
-
         int *newPos = realloc(g->positions, (g->count + 1) * sizeof(int));
         if (newPos == NULL) {
             printf("Position Allocation Failed.\n");
-            goto cleanup;
+            freeGroups(groups, groupCount);
+            return;
         }
         g->positions = newPos;
-
         g->positions[g->count++] = pos;
 
         temp = temp->next;
         pos++;
     }
 
-    if (groups != NULL){
+    if (groups != NULL) {
         printf("\n--- Grouped Result ---\n");
         for (int i = 0; i < groupCount; i++) {
             switch(type) {
-            case 'p':
-                printf("Priority %s: ", groups[i].key);
-                break;
-            case 's':
-                printf("Supplier %s: ", groups[i].key);
-                break;
-            case 'm':
-                printf("Material %s: ", groups[i].key);
-                break;
-            default: ;
+                case 'p': printf("Priority %s: ", groups[i].key); break;
+                case 's': printf("Supplier %s: ", groups[i].key); break;
+                case 'm': printf("Material %s: ", groups[i].key); break;
+                default: ;
             }
-
             printf("%d trucks --> Positions: ", groups[i].count);
             for (int j = 0; j < groups[i].count; j++) {
                 printf("%d ", groups[i].positions[j]);
@@ -215,11 +219,5 @@ void groupBy(const Queue* queue, char type) {
         }
     }
 
-    cleanup:
-        if (groups != NULL) {
-            for (int i = 0; i < groupCount; i++) {
-                free(groups[i].positions);
-            }
-            free(groups);
-        }
+    freeGroups(groups, groupCount);
 }
