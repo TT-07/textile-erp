@@ -129,7 +129,6 @@ void freeGroups(Group* groups, int groupCount) {
     }
 }
 
-// Main function without goto
 void groupBy(const Queue* queue, char type) {
     if (isEmpty(queue)) {
         printf("Queue is empty.\n");
