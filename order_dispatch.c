@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include "factory.h"
 
+Order *orderhead = NULL;
+
 // Function to create a new order with the given order details
 void add_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price)
 {

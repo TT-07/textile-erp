@@ -47,7 +47,7 @@ int main()
 
         case 2: // Main Warehouse - Anushka
             printf("\n--- Main Warehouse ---\n");
-            printf("1. Add Item\n2. Update Stock\n3. Delete Item\n4. Display\n5. Back\nChoice: ");
+            printf("1. Add Item\n2. Update Stock\n3. Delete Item\n4. Display\n5. Search\n6. Sort\n7. Back\nChoice: ");
             scanf("%d", &subChoice);
             if (subChoice == 1)
             {
@@ -69,6 +69,22 @@ int main()
             }
             else if (subChoice == 4)
                 display_warehouse();
+            else if (subChoice == 5)
+            {
+                printf("Search query (Material or Slot No): ");
+                char query[50];
+                scanf("%s", query);
+                search_warehouse_item(query);
+            }
+            else if (subChoice == 6)
+            {
+                int criteria, order;
+                printf("Sort by: 1. Slot No | 2. Material | 3. Stock\nChoice: ");
+                scanf("%d", &criteria);
+                printf("Order: 1. Ascending | 2. Descending\nChoice: ");
+                scanf("%d", &order);
+                sort_warehouse_items(criteria, order);
+            }
             break;
 
         case 3: // Secondary Stock - Sasadhara

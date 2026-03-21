@@ -38,7 +38,7 @@ bool isEmpty(const struct Queue *queue);
 void enqueue_truck(struct Queue *queue, int id, int priority, char supplier[], char material[], char date[]);
 void dequeue_truck(struct Queue *queue);
 void display_dock(const struct Queue *queue);
-void sortByPriority(const struct Queue *queue);
+void sortByPriority(struct Queue *queue);
 void groupBy(const struct Queue *queue, char type);
 
 // ==========================================
@@ -53,12 +53,14 @@ typedef struct WarehouseItem
     struct WarehouseItem *next;
 } WarehouseItem;
 
-extern WarehouseItem *head;
+extern WarehouseItem *warehouse_head;
 
 void add_warehouse_item(int slot, char *mat, float stock);
 void update_warehouse_item(int slot, float new_stock);
 void delete_warehouse_item(int slot);
 void display_warehouse();
+void search_warehouse_item(char *query);
+void sort_warehouse_items(int criteria, int order);
 
 // ==========================================
 // 3. Secondary Stock (DLL) - Sasadhara
@@ -77,7 +79,6 @@ void add_secondary_item(char *mat, float stock);
 void update_secondary_item(char *mat, float new_stock);
 void delete_secondary_item(char *mat);
 void display_secondary();
-void count_secondary_items();
 
 // ==========================================
 // 4. Production Floor (Array) - Dulaksha

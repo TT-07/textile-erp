@@ -1,5 +1,7 @@
 #include "factory.h"
 
+SecondaryStockItem *secondary_head = NULL;
+
 // 1. Add an item to the end of the DLL
 void add_secondary_item(char *mat, float stock)
 {

@@ -50,7 +50,7 @@ void update_sewing_operator_details(int operator_id, int new_machine_id, char *n
     {
         if (current->operator_id == operator_id)
         {
-            if (new_machine_id != NULL)
+            if (new_machine_id != 0)
             {
                 current->machine_id = new_machine_id;
             }
