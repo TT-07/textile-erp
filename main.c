@@ -1,6 +1,11 @@
 #include "factory.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
 
-void show_menu() {
+// --- Menu Functions ---
+void show_menu()
+{
     printf("\n--- Garment Factory Management System (Group Project) ---\n");
     printf("1. Receiving Dock (Themiya - Queue)\n");
     printf("2. Main Warehouse (Anushka - Doubly Linked List)\n");
@@ -12,13 +17,25 @@ void show_menu() {
     printf("0. Exit\n");
 }
 
-void clear_input() {
+void clear_input()
+{
     int c;
-    while ((c = getchar()) != '\n' && c != EOF);
+    while ((c = getchar()) != '\n' && c != EOF)
+        ;
 }
 
-int main() {
-    int choice, subChoice, id;
+// --- Case Functions ---
+void receiving_dock_menu()
+{
+    printf("\n--- Receiving Dock ---\n");
+    // TODO: add receiving dock menu and logic here
+    printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
+    // Example call: enqueue_truck(...);
+}
+
+void warehouse_menu()
+{
+    int subChoice, id;
     char mat[30];
     float stock;
 
@@ -31,10 +48,11 @@ int main() {
     while(1) {
         show_menu();
         printf("Enter choice: ");
-        if (scanf("%d", &choice) != 1) { 
+        if (scanf("%d", &choice) != 1)
+        {
             printf("Invalid input.\n");
-            clear_input(); 
-            continue; 
+            clear_input();
+            continue;
         }
         
         switch(choice) {
