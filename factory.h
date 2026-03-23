@@ -167,6 +167,6 @@ typedef struct
 void add_guard(int id, int active, char *point, char *shift);
 void update_guard(int id, int active, char *point, char *shift);
 void delete_guard(int id);
-void display_security();
+void display_guard(struct guardd guard[], int size)
 
 #endif
