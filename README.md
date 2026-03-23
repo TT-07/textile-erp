@@ -1,12 +1,12 @@
-# Textile ERP
+# 👔 Textile ERP
 Simple program that models a system of an textile manufacturing company to better understand the concepts and get hands on experience in practical applications of Data Structures and Algorithms
 
-## Task:
+## 📋 Task:
 * Create a console-based C program to store and process data in any industry.
 * At least 4 data structures should be used. (Array, Linked List, Doubly Linked List, Queue)
 * Data management tasks (insert/ delete/ search/ etc.) should be performed as well, and suitable sorting algorithms, control structures, etc, are to be used.
 
-## System Overview:
+## ⚙️ System Overview:
 ### 1. Receiving Dock
 * Data Structure: **Queue**
 * Data Elements: `{truck_id, priority, supplier, material_type, date}`
@@ -42,7 +42,7 @@ Simple program that models a system of an textile manufacturing company to bette
 * Data Elements: `{guard_id, is_active, patrol_point, shift}`
 * Special Task: Sorted by `guard_id`
 
-## Commands to compile and run:
+## 👨‍💻 Commands to compile and run:
 
 `mkdir bin`
 
@@ -51,3 +51,13 @@ Simple program that models a system of an textile manufacturing company to bette
 `cd bin`
 
 `textile-erp`
+
+## 👥 Team members
+
+- [@AkashGandhawa](https://github.com/AkashGandhawa)
+- [@SasadharaYT](hhttps://github.com/SasadharaYT)
+- [@TT-07](https://github.com/TT-07)
+- [@jyubon](https://github.com/jyubon)
+- [@dulakshadulan](https://github.com/dulakshadulan)
+- [@Prabuddha4701](https://github.com/Prabuddha4701)
+- [@sadissanushka](https://github.com/sadissanushka)
