@@ -20,7 +20,7 @@ Simple program that models a system of an textile manufacturing company to bette
 ### 3. Secondary Stock
 * Data Structure: **Doubly Linked List**
 * Data Elements: `{material_type, stock_kg}`
-* Special Task: Total of `stock_kg` counted
+* Special Task: Min, max of `stock_kg` counted
 
 ### 4. Production Floor
 * Data Structure: **Array**
@@ -40,4 +40,4 @@ Simple program that models a system of an textile manufacturing company to bette
 ### 7. Security
 * Data Structure: **Array**
 * Data Elements: `{guard_id, is_active, patrol_point, shift}`
-* Special Task: *ADD TASK*
+* Special Task: Sorted by `guard_id`

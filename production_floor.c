@@ -3,7 +3,7 @@
 #include <stdbool.h>
 #include "factory.h"
 
-int insert_at(struct machine arr[], int position, int id, char status[20], int maintain, int size, int max)
+int insert_at(Machine arr[], int position, int id, char status[20], int maintain, int size, int max)
 {
     if (size >= max)
     {
@@ -41,7 +41,7 @@ int insert_at(struct machine arr[], int position, int id, char status[20], int m
     return size + 1;
 }
 
-int delete_by_position(struct machine arr[], int position, int size)
+int delete_by_position(Machine arr[], int position, int size)
 {
     if (position > size || position < 1)
     {
@@ -57,7 +57,8 @@ int delete_by_position(struct machine arr[], int position, int size)
     printf("Delete Successful .");
     return size;
 }
-int delete_by_id(struct machine arr[], int id, int size)
+
+int delete_by_id(Machine arr[], int id, int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -77,7 +78,7 @@ int delete_by_id(struct machine arr[], int id, int size)
     return size;
 }
 
-void traverse(struct machine arr[], int size)
+void traverse(Machine arr[], int size)
 {
     for (int i = 0; i < size; i++)
     {
@@ -96,7 +97,7 @@ void traverse(struct machine arr[], int size)
     }
 }
 
-void update_by_position(struct machine arr[], int position, int size, char status[20], int maintain)
+void update_by_position(Machine arr[], int position, int size, char status[20], int maintain)
 {
     if (position > size || position < 1)
     {
@@ -107,7 +108,7 @@ void update_by_position(struct machine arr[], int position, int size, char statu
     arr[position - 1].maintenance_req = maintain;
 }
 
-void update_by_id(struct machine arr[], int id, int size, char status[20], int maintain)
+void update_by_id(Machine arr[], int id, int size, char status[20], int maintain)
 {
     for (int i = 0; i < size; i++)
     {
@@ -122,7 +123,7 @@ void update_by_id(struct machine arr[], int id, int size, char status[20], int m
     printf("Id not found.");
 }
 
-void bubble_sort_by_id(struct machine arr[], int size)
+void bubble_sort_by_id(Machine arr[], int size)
 {
     int i, j;
     struct machine temp;
@@ -149,7 +150,7 @@ void bubble_sort_by_id(struct machine arr[], int size)
     printf("Sorted successfully.\n");
 }
 
-void show_maintenance(struct machine arr[], int size)
+void show_maintenance(Machine arr[], int size)
 {
     int found = 0;
     for (int i = 0; i < size; i++)

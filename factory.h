@@ -135,19 +135,20 @@ void sort_sewing_operators_by_completed();
 // 6. Order Dispatch (Linked List) - Prabuddha
 // ==========================================
 
-typedef struct Order{
+typedef struct Order
+{
     int order_id;
     int receiver_id;
     int priority;
     char item_type;
     int item_count;
     float price;
-struct Order* next;
-}Order;
+    struct Order *next;
+} Order;
 
-extern Order* orderhead;
-void add_order(int order_id,int receiver_id,int priority,char item_type,int item_count,float price);
-void update_order(int order_id,int receiver_id,int priority,char item_type,int item_count,float price);
+extern Order *orderhead;
+void add_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price);
+void update_order(int order_id, int receiver_id, int priority, char item_type, int item_count, float price);
 void delete_order(int order_id);
 void display_orders();
 
@@ -161,12 +162,12 @@ typedef struct
     int guard_id;
     int is_active;
     char patrol_point[30];
-    char shift[20];
+    char shift[6];
 } Guard;
 
-void add_guard(int id, int active, char *point, char *shift);
-void update_guard(int id, int active, char *point, char *shift);
-void delete_guard(int id);
-void display_guard(struct guardd guard[], int size)
+void add_guard(Guard guard[], int *size);
+void update_guard(Guard guard[], int size);
+void delete_guard(Guard guard[], int *size, int id);
+void display_guard(Guard guard[], int size);
 
 #endif
