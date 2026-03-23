@@ -9,11 +9,11 @@ void show_menu()
     printf("\n--- Garment Factory Management System (Group Project) ---\n");
     printf("1. Receiving Dock\n");
     printf("2. Main Warehouse\n");
-    printf("3. Secondary Stock (Sasadhara - Doubly Linked List)\n");
-    printf("4. Production Floor (Dulaksha - Array)\n");
-    printf("5. Sewing Operator (Akash - Linked List)\n");
-    printf("6. Order Dispatch (Prabuddha - Linked List)\n");
-    printf("7. Security (Yasiru - Array)\n");
+    printf("3. Secondary Stock\n");
+    printf("4. Production Floor\n");
+    printf("5. Sewing Operator\n");
+    printf("6. Order Dispatch\n");
+    printf("7. Security\n");
     printf("0. Exit\n");
 }
 
@@ -29,11 +29,79 @@ void clear_input()
 void receiving_dock_menu()
 {
     printf("\n--- Receiving Dock ---\n");
-    // TODO: add receiving dock menu and logic here
-    printf("Space for Themiya to add Enqueue/Dequeue logic.\n");
-    // Example call: enqueue_truck(...);
+    Queue dockQueue;
+    initialize_queue(&dockQueue);
+    int subChoice;
+    int id, priority;
+    char supplier[50], material[30], date[20], groupType;
+    while (1)
+    { // Added a loop so the user stays in the menu until they choose 'Back'
+        printf("1. Register New Truck (Enqueue)\n");
+        printf("2. Release Next Truck (Dequeue)\n");
+        printf("3. Display All Trucks in Dock\n");
+        printf("4. Sort Queue by Priority\n");
+        printf("5. Group Trucks (by Priority, Supplier, or Material)\n");
+        printf("6. Exit\n");
+        printf("Enter choice: ");
+
+        if (scanf("%d", &subChoice) != 1)
+        {
+            clear_input();
+            continue;
+        }
+
+        switch (subChoice)
+        {
+        case 1:
+            printf("Enter Truck ID: ");
+            scanf("%d", &id);
+            printf("Enter Priority (1-high, 10-low): ");
+            scanf("%d", &priority);
+            clear_input(); // Clear before strings
+
+            printf("Enter Supplier: ");
+            fgets(supplier, sizeof(supplier), stdin);
+            supplier[strcspn(supplier, "\n")] = 0; // Remove newline
+
+            printf("Enter Material Type: ");
+            fgets(material, sizeof(material), stdin);
+            material[strcspn(material, "\n")] = 0;
+
+            printf("Enter Date (DD/MM/YYYY): ");
+            fgets(date, sizeof(date), stdin);
+            date[strcspn(date, "\n")] = 0;
+
+            enqueue_truck(&dockQueue, id, priority, supplier, material, date);
+            printf("Truck registered successfully!\n");
+            break;
+        case 2:
+            printf("Processing truck at the front of the queue...\n");
+            dequeue_truck(&dockQueue);
+            break;
+        case 3:
+            printf("--- Current Dock Queue ---\n");
+            display_dock(&dockQueue);
+            break;
+        case 4:
+            printf("Sorting queue by priority (Bubble Sort)... \n");
+            sortByPriority(&dockQueue);
+            printf("Queue sorted.\n");
+            display_dock(&dockQueue);
+            break;
+        case 5:
+            printf("Group by Priority: ");
+            clear_input();
+            scanf("%c", &groupType);
+            groupBy(&dockQueue, groupType);
+            break;
+        case 6:
+            return; // Exit back to main menu
+        default:
+            printf("Invalid choice.\n");
+            break;
+        }
+    }
 }
-// TODO: To be completed by Themiya
 
 // 2. Main Warehouse (DLL) - Anushka
 void warehouse_menu()
@@ -371,8 +439,66 @@ void order_dispatch_menu()
 void security_menu()
 {
     printf("\n--- Security ---\n");
-    // TODO: add security guard menu and logic here
-    printf("Space for Yasiru to add Add/Delete/Update logic.\n");
+    Guard guard_roster[20];
+    int current_guard_count = 0;
+    int choice;
+    int id_input;
+    while (1)
+    {
+        printf("1. Register New Guard\n");
+        printf("2. Update Guard Details\n");
+        printf("3. Delete a Guard\n");
+        printf("4. View All Guards\n");
+        printf("5. Back\n");
+        printf("----------------------------------------\n");
+        printf("Enter choice: ");
+
+        if (scanf("%d", &choice) != 1)
+        {
+            printf("[!] Invalid input. Please enter a number.\n");
+            clear_input();
+            continue;
+        }
+
+        switch (choice)
+        {
+        case 1:
+            if (current_guard_count >= 20)
+            {
+                printf("[!] Roster full! Cannot add more guards.\n");
+            }
+            else
+            {
+                add_guard(guard_roster, &current_guard_count);
+            }
+            break;
+        case 2:
+            update_guard(guard_roster, current_guard_count);
+            break;
+        case 3:
+            printf("Enter guard ID to delete: ");
+            if (scanf("%d", &id_input) == 1)
+            {
+                delete_guard(guard_roster, &current_guard_count, id_input);
+            }
+            else
+            {
+                printf("[!] Invalid ID format.\n");
+                clear_input();
+            }
+            break;
+        case 4:
+            display_guard(guard_roster, current_guard_count);
+            break;
+        case 5:
+            printf("Logging out of Security Panel. Goodbye!\n");
+            exit(0);
+        default:
+            printf("[!] Invalid selection. Please try again.\n");
+            _sleep(500); // Small pause so the user sees the error
+            break;
+        }
+    }
 }
 
 // --- Main ---
