@@ -140,7 +140,7 @@ typedef struct Order
     int order_id;
     int receiver_id;
     int priority;
-    char *item_type;
+    char item_type[30];
     int item_count;
     float price;
     struct Order *next;
